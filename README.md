@@ -76,7 +76,7 @@ chmod +x ~/bin/cryptsearch.py
 You can view a help message explaining how to use cryptsearch by running
 
 ```
-cryptsearch,.py -h
+cryptsearch.py -h
 ```
 
 The most common usage is to run cryptsearch from the current directory,
