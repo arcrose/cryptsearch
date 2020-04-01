@@ -90,7 +90,10 @@ def main():
     pattern = re.compile(args.search, flags=flags)
 
     for file_path in files:
-        if pattern.search(decrypt(file_path)) is not None:
+        decrypted = decrypt(file_path)
+        match = pattern.search(decrypted)
+
+        if match is not None:
             print(file_path)
 
 
