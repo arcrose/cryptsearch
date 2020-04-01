@@ -33,7 +33,8 @@ def decrypt(file_path):
 
     proc = subprocess.run(
         ['ansible-vault', 'decrypt', file_path, '--output', '-'],
-        capture_output=True)
+        stdout=subprocess.PIPE,
+        stderr=subprocess.DEVNULL)
 
     return proc.stdout.decode('utf-8')
 
