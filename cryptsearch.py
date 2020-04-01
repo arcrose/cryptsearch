@@ -64,7 +64,7 @@ def main():
         help='Directory to start searching from.',
         default=os.curdir)
     parser.add_argument(
-        '-r',
+        '-n',
         '--norecurse',
         help='Flag to turn OFF recursive search into directories.',
         default=False,
