@@ -64,6 +64,12 @@ def main():
         help='Directory to start searching from.',
         default=os.curdir)
     parser.add_argument(
+        '-i',
+        '--ignorecase',
+        help='Turn off case-sensitive matching.',
+        default=False,
+        action='store_true')
+    parser.add_argument(
         '-n',
         '--norecurse',
         help='Flag to turn OFF recursive search into directories.',
@@ -78,7 +84,10 @@ def main():
         directory=args.directory,
         recursive=not args.norecurse)
 
-    pattern = re.compile(args.search)
+    flags = re.IGNORECASE if args.ignorecase else 0
+    # flags |= re.OTHERFLAG if condition else 0
+
+    pattern = re.compile(args.search, flags=flags)
 
     for file_path in files:
         if pattern.search(decrypt(file_path)) is not None:
