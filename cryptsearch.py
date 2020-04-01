@@ -1,5 +1,6 @@
 import argparse
 import os
+import re
 import subprocess
 
 
@@ -55,7 +56,7 @@ def main():
     parser = argparse.ArgumentParser(
         description='Search ansible-vault encrypted files for a substring.')
     parser.add_argument(
-        'search', type=str, help='string to search for')
+        'search', type=str, help='regex to search for')
     parser.add_argument(
         '-d',
         '--directory',
@@ -77,8 +78,10 @@ def main():
         directory=args.directory,
         recursive=not args.norecurse)
 
+    pattern = re.compile(args.search)
+
     for file_path in files:
-        if args.search in decrypt(file_path):
+        if pattern.search(decrypt(file_path)) is not None:
             print(file_path)
 
 
